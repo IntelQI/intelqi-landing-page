@@ -117,11 +117,17 @@
         <div class="hero-img">
           <video
             class="hero-video"
-            src="public\videos\6590467-uhd_4096_2160_25fps.mp4"
             autoplay
             loop
             muted
-            playsinline>
+            playsinline
+            preload="auto"
+            poster="/images/hero/img1.jpg">
+            <source src="/videos/6590467-uhd_4096_2160_25fps.mp4" type="video/mp4">
+            <!-- Fallback message if video cannot be loaded -->
+            <div class="video-fallback">
+              <img src="/images/hero/img1.jpg" alt="Hero background" class="fallback-image">
+            </div>
           </video>
         </div>
       </section>

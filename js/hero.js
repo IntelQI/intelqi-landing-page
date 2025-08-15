@@ -9,7 +9,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // grab the video instead of the image
   const heroVideo = document.querySelector(".hero-img video");
-  heroVideo.play();            // just to be safe
+  
+  // Video loading error handling
+  if (heroVideo) {
+    heroVideo.addEventListener('error', (e) => {
+      console.error('Video loading error:', e);
+      // Fallback: hide video and show fallback image
+      const fallback = document.querySelector('.video-fallback');
+      if (fallback) {
+        fallback.style.display = 'block';
+        heroVideo.style.display = 'none';
+      }
+    });
+
+    heroVideo.addEventListener('loadeddata', () => {
+      console.log('Video loaded successfully');
+      heroVideo.play().catch(err => {
+        console.warn('Autoplay prevented:', err);
+        // Fallback for autoplay restrictions
+        heroVideo.muted = true;
+        heroVideo.play();
+      });
+    });
+
+    // Attempt to play video
+    heroVideo.play().catch(err => {
+      console.warn('Initial play failed:', err);
+    });
+  }
 
   let scrollTriggerInstance = null;
 
