@@ -216,3 +216,90 @@
   line-height: 1.5;
   opacity: 0.9;
 }
+
+.team-profile-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-family: 'PPFormula-CondensedBlack', sans-serif;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.team-profile-btn:hover {
+  background: var(--color-text-primary);
+  color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+/* Core team infinite scroll styles */
+.team-core {
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 1001px) {
+  .team-grid {
+    display: flex;
+    width: fit-content;
+    will-change: transform;
+  }
+  
+  .team-member-card {
+    flex: none;
+    width: 350px;
+    margin-right: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-member-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Ensure cloned cards look identical */
+  .team-member-card.cloned {
+    opacity: 1;
+  }
+}
+
+/* Mobile styles remain the same */
+@media (max-width: 1000px) {
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .team-member-card.cloned {
+    display: none;
+  }
+}
+
+/* Enhanced card hover effects */
+.team-member-card {
+  cursor: pointer;
+}
+
+.team-member-card:hover .team-member-image img {
+  transform: scale(1.1);
+}
+
+.team-member-card:hover .team-profile-btn {
+  background: var(--color-text-primary);
+  color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+/* Smooth animation performance */
+.team-grid {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
